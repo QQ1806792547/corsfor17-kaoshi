@@ -20,7 +20,6 @@
 
         <script>
             $(document).ready(function () {
-
                 $.ajax({
                     url: 'http://wthrcdn.etouch.cn/weather_mini?citykey=101210701',
                     type: 'GET',
@@ -41,18 +40,24 @@
 
 
                 $.ajax({
-                    url: 'http://localhost:3000/profile',
+                    url: 'http://10.30.29.57/Test/index.php',
                     type: 'GET',
                     dataType: 'json',
                     xhrFields:{withCredentials:true},
                     success: function (res) {
+                        var login=false;
+                        var login=res.islogin;
+                        if(!res.islogin)
+                        {
+                            window.location.href="http://10.30.29.56:63341/corsfor17/view/unlogin.html";
+                        }
                         $('#userName').html(res.userName);
                     }
                 })
 
                 $('#btnLogout').click(function () {
                     $.ajax({
-                        url: 'http://localhost:3000/logout',
+                        url: 'http://10.30.29.57/Test/out.php',
                         type: 'GET',
                         contentType: 'application/json;charset=utf-8',
                         xhrFields:{withCredentials:true},
@@ -62,6 +67,7 @@
                             }
                         }
                     })
+                    window.location.href="http://10.30.29.56:63341/corsfor17/view/login.html";
                 })
             })
         </script>
